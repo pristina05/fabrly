@@ -1,6 +1,8 @@
 import 'package:fabrly/buyerInformation.dart';
 import 'package:fabrly/contactUs.dart';
+import 'package:fabrly/demo.dart';
 import 'package:fabrly/forgot.dart';
+import 'package:fabrly/imageslide.dart';
 import 'package:fabrly/login.dart';
 import 'package:fabrly/market.dart';
 import 'package:fabrly/notifications.dart';
@@ -22,6 +24,8 @@ void main() {
       '/buyerinfo': (context) => BuyerInfo(),
       '/notifications': (context) => Notifications(),
       '/contactus': (context) => ContactUs(),
+      '/demo': (context) =>Demo(),
+      '/demo1': (context) =>CarouselDemo(),
       '/login': (BuildContext context) => new Login()
     },
   ));

@@ -3,6 +3,7 @@ import 'package:fabrly/market.dart';
 import 'package:fabrly/signUp.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,7 +11,38 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  
+  String mobile;
+  String validateMobile(String value) {
+    String patttern = r'/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/';
+    RegExp regExp = new RegExp(patttern);
+    if (value.length == 0) {
+      return "Mobile is Required";
+    } else if (value.length != 10) {
+      return "Mobile number must 10 digits";
+    }
+    // else if (!regExp.hasMatch(value)) {
+    //   return "Mobile Number must be digits";
+    // }
+    return null;
+  }
+
+  String validatePassword(String value) {
+    Pattern pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$';
+    RegExp regex = new RegExp(pattern);
+    print(value);
+    if (value.isEmpty) {
+      return 'Please enter password';
+    } else {
+      if (!regex.hasMatch(value))
+        return 'Enter valid password';
+      else
+        return null;
+    }
+  }
+
+  GlobalKey<FormState> _key = new GlobalKey();
+  bool _validate = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +55,8 @@ class _LoginState extends State<Login> {
           margin: const EdgeInsets.only(left: 10, right: 10),
           // child:Image.asset('assets/bg.jpg'),
           child: Form(
+            key: _key,
+            autovalidate: _validate,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -33,25 +67,31 @@ class _LoginState extends State<Login> {
                     height: 200,
                   ),
                 ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   child: TextFormField(
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: "Mobile Number",
                       border: OutlineInputBorder(),
                     ),
-                  
+                    validator: validateMobile,
+                    onSaved: (String val) {
+                      mobile = val;
+                    },
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20),
                   child: TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Password",
                       border: OutlineInputBorder(),
                     ),
+                    validator: validatePassword,
                   ),
                 ),
                 //Sign up
@@ -97,7 +137,7 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
-                          Navigator.pushNamed(context, '/forgot');
+                            Navigator.pushNamed(context, '/forgot');
                           },
                       ),
                     ),
@@ -114,11 +154,13 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(top: 15, bottom: 15),
           color: Colors.redAccent,
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   new MaterialPageRoute(builder: (context) => Market()),
-            // );
-            Navigator.pushNamed(context, '/market');
+            setState(() {
+              _validate = true;
+            });
+            if (_key.currentState.validate()) {
+              // Navigator.pushNamed(context, '/demo1');
+              Navigator.pushNamed(context, '/market');
+            }
           },
           child: Text(
             'LOGIN',

@@ -1,20 +1,23 @@
-import 'package:fabrly/filter.dart';
-import 'package:fabrly/login.dart';
-import 'package:fabrly/notifications.dart';
-import 'package:fabrly/productDetails.dart';
-import 'package:fabrly/profile.dart';
-import 'package:flutter/cupertino.dart';
+// import 'dart:js';
 
+import 'package:fabrly/forgot.dart';
+import 'package:fabrly/productDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:flutter_swiper/flutter_swiper.dart';
 
-class Market extends StatefulWidget {
+class CarouselDemo extends StatefulWidget {
+  CarouselDemo() : super();
+
+  final String title = "Carousel Demo";
+
   @override
-  _MarketState createState() => _MarketState();
+  CarouselDemoState createState() => CarouselDemoState();
 }
 
-class _MarketState extends State<Market> {
-   CarouselSlider carouselSlider;
+class CarouselDemoState extends State<CarouselDemo> {
+  //
+  CarouselSlider carouselSlider;
   int _current = 0;
   List imgList = [
     'https://images.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
@@ -24,134 +27,19 @@ class _MarketState extends State<Market> {
     'https://images.unsplash.com/photo-1502943693086-33b5b1cfdf2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
   ];
 
+  // List<T> map<T>(List list, Function handler) {
+  //   List<T> result = [];
+  //   for (var i = 0; i < list.length; i++) {
+  //     result.add(handler(i, list[i]));
+  //   }
+  //   return result;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        // search
-        title: TextField(
-          style: TextStyle(
-            fontSize: 15,
-          ),
-          decoration: InputDecoration(
-            hintText: "Search",
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        // filter
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.format_align_center, color: Colors.white),
-            tooltip: 'Filter',
-            onPressed: () => Navigator.push(
-              context,
-              new MaterialPageRoute(builder: (context) => Filter()),
-            ),
-          ),
-        ],
-      ),
-      // Side navmenu
-      drawer: Drawer(
-        // elevation: 1.5,
-        child: Column(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountEmail: new Text("pristi@gmail.com"),
-              accountName: new Text("Pristi"),
-              currentAccountPicture: new GestureDetector(
-                child: new CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child: new Image.asset('assets/user.png'),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => Profile()),
-                  )
-                },
-              ),
-            ),
-            // DrawerHeader(
-
-            //     decoration: BoxDecoration(
-
-            //   color: Colors.redAccent,
-            // )),
-            Expanded(
-                child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                ListTile(
-                  title: Text('MARKET'),
-                  leading: new Icon(Icons.search),
-                  onTap: () {
-                    // Navigator.push(context, new MaterialPageRoute(builder: (context)=>()););
-                  },
-                ),
-                ListTile(
-                  title: Text('CART'),
-                  leading: new Icon(Icons.shopping_cart),
-                  onTap: () {
-                    // Navigator.push(context, new MaterialPageRoute(builder: (context)=>()););
-                  },
-                ),
-                ListTile(
-                  title: Text('NOTIFICATIONS'),
-                  leading: new Icon(Icons.notifications),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/notifications');
-                  },
-                ),
-                ListTile(
-                  title: Text('CONTACT US'),
-                  leading: new Icon(Icons.call),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/contactus');
-                  },
-                ),
-                ListTile(
-                    title: Text('LOGOUT'),
-                    leading: Icon(Icons.power_settings_new),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => CupertinoAlertDialog(
-                          content: Text("Are you sure you want to LOGOUT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 17)),
-                          actions: [
-                            CupertinoDialogAction(
-                              child: Text('YES'),
-                              onPressed: () => Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => Login()),
-                              ),
-                            ),
-                            CupertinoDialogAction(
-                              child: Text('NO'),
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          ],
-                        ),
-                        barrierDismissible: false,
-                      );
-                    })
-              ],
-            )),
-            Container(
-              color: Colors.black,
-              width: double.infinity,
-              height: 0.1,
-            ),
-          ],
-        ),
+        title: Text(widget.title),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -388,7 +276,8 @@ class _MarketState extends State<Market> {
       ),
     );
   }
-   goToPrevious() {
+
+  goToPrevious() {
     carouselSlider.previousPage(
         duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
