@@ -36,8 +36,8 @@ class _ProductDetailState extends State<ProductDetail> {
                     onTap: () {
                       Navigator.pushNamed(context, '/images');
                     },
-                    child: Image.asset(
-                      'assets/accessories.jpeg',
+                    child: Image.network(
+                      'https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
                     ),
                   ),
                   Container(
@@ -169,7 +169,7 @@ class _ProductDetailState extends State<ProductDetail> {
 
             // Similar Products
             Container(
-              margin: const EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 20),
               child: Text(
                 'SIMILAR PROCUCTS',
                 style:
@@ -202,7 +202,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         onTap: () {},
                         child: Image.asset(
                           'assets/accessories.jpeg',
-                          width: 160,
+                          width: 160, 
                         ),
                       ),
                       Text('A2', style: TextStyle(fontWeight: FontWeight.bold)),

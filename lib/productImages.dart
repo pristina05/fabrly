@@ -19,7 +19,7 @@ class _ProductImagesState extends State<ProductImages> {
       ),
       body: Container(
         child: Center(
-          child: Image.asset('assets/accessories.jpeg'),
+          child: Image.network('https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0'),
         ),
       ),
     );

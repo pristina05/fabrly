@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Filter extends StatefulWidget {
@@ -6,7 +7,8 @@ class Filter extends StatefulWidget {
 }
 
 class _FilterState extends State<Filter> {
-  RangeValues sliderVal = RangeValues(0, 10);
+  RangeValues values = RangeValues(1, 5000);
+  RangeLabels labels = RangeLabels('1', '5000');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +28,31 @@ class _FilterState extends State<Filter> {
         ],
       ),
       body: Container(
+        padding: const EdgeInsets.all(5),
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            RangeSlider(
-              values: sliderVal,
-              onChanged: (RangeValues newVal) {
-                print("newVal $newVal");
-                setState(() {
-                  sliderVal = newVal;
-                });
-              },
-              max: 100,
-              min: 0,
-              labels: RangeLabels('${sliderVal.start}', '${sliderVal.end}'),
+            Text(
+              'Range:',
+              style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20,) ,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: RangeSlider(
+                max: 5000,
+                min: 1,
+                values: values,
+                divisions: 10,
+                labels: labels,
+                onChanged: (value) {
+                  print("newVal $value.start");
+                  setState(() {
+                    values = value;
+                    labels = RangeLabels(value.start.toInt().toString(),
+                        value.end.toInt().toString());
+                  });
+                },
+              ),
             ),
             Expanded(
               child: Row(

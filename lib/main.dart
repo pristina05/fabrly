@@ -1,6 +1,7 @@
 import 'package:fabrly/buyerInformation.dart';
 import 'package:fabrly/contactUs.dart';
 import 'package:fabrly/demo.dart';
+import 'package:fabrly/filter.dart';
 import 'package:fabrly/forgot.dart';
 import 'package:fabrly/imageslide.dart';
 import 'package:fabrly/login.dart';
@@ -24,9 +25,10 @@ void main() {
       '/buyerinfo': (context) => BuyerInfo(),
       '/notifications': (context) => Notifications(),
       '/contactus': (context) => ContactUs(),
-      '/demo': (context) =>Demo(),
-      '/demo1': (context) =>CarouselDemo(),
-      '/login': (BuildContext context) => new Login()
+      '/demo': (context) => Demo(),
+      '/demo1': (context) => CarouselDemo(),
+      '/login': (BuildContext context) => new Login(),
+      '/filter': (context) => Filter(),
     },
   ));
 }
@@ -56,8 +58,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Center(
-        child: new Image.asset('assets/fabrly.jpg'),
+      body: Container(
+        child: new Center(
+          child: new Image.asset(
+            'assets/preloading.gif',
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

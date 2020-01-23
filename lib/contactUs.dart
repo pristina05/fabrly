@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_drawer.dart';
+
 class ContactUs extends StatefulWidget {
   @override
   _ContactUsState createState() => _ContactUsState();
@@ -17,6 +19,7 @@ class _ContactUsState extends State<ContactUs> {
           ),
         ),
       ),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

@@ -123,9 +123,9 @@ class CarouselDemoState extends State<CarouselDemo> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image.asset(
-                              'assets/user.png',
-                              width: 150,
+                            child: Image.network(
+                              'https://images.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+                             
                             ),
                           ),
                           Container(

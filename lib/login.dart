@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
 
   String validatePassword(String value) {
     Pattern pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$';
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{4,}$';
     RegExp regex = new RegExp(pattern);
     print(value);
     if (value.isEmpty) {

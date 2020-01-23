@@ -8,25 +8,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'app_drawer.dart';
+
 class Market extends StatefulWidget {
   @override
   _MarketState createState() => _MarketState();
 }
 
 class _MarketState extends State<Market> {
-   CarouselSlider carouselSlider;
+  CarouselSlider carouselSlider;
   int _current = 0;
   List imgList = [
-    'https://images.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1554321586-92083ba0a115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1536679545597-c2e5e1946495?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1543922596-b3bbaba80649?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1502943693086-33b5b1cfdf2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+    'https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
+   'http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0',
+   'https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
+   'https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
+   'https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0'
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue[50],
       appBar: AppBar(
         backgroundColor: Colors.blue,
         // search
@@ -55,104 +58,7 @@ class _MarketState extends State<Market> {
         ],
       ),
       // Side navmenu
-      drawer: Drawer(
-        // elevation: 1.5,
-        child: Column(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountEmail: new Text("pristi@gmail.com"),
-              accountName: new Text("Pristi"),
-              currentAccountPicture: new GestureDetector(
-                child: new CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child: new Image.asset('assets/user.png'),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => Profile()),
-                  )
-                },
-              ),
-            ),
-            // DrawerHeader(
-
-            //     decoration: BoxDecoration(
-
-            //   color: Colors.redAccent,
-            // )),
-            Expanded(
-                child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                ListTile(
-                  title: Text('MARKET'),
-                  leading: new Icon(Icons.search),
-                  onTap: () {
-                    // Navigator.push(context, new MaterialPageRoute(builder: (context)=>()););
-                  },
-                ),
-                ListTile(
-                  title: Text('CART'),
-                  leading: new Icon(Icons.shopping_cart),
-                  onTap: () {
-                    // Navigator.push(context, new MaterialPageRoute(builder: (context)=>()););
-                  },
-                ),
-                ListTile(
-                  title: Text('NOTIFICATIONS'),
-                  leading: new Icon(Icons.notifications),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/notifications');
-                  },
-                ),
-                ListTile(
-                  title: Text('CONTACT US'),
-                  leading: new Icon(Icons.call),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/contactus');
-                  },
-                ),
-                ListTile(
-                    title: Text('LOGOUT'),
-                    leading: Icon(Icons.power_settings_new),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => CupertinoAlertDialog(
-                          content: Text("Are you sure you want to LOGOUT",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 17)),
-                          actions: [
-                            CupertinoDialogAction(
-                              child: Text('YES'),
-                              onPressed: () => Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => Login()),
-                              ),
-                            ),
-                            CupertinoDialogAction(
-                              child: Text('NO'),
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          ],
-                        ),
-                        barrierDismissible: false,
-                      );
-                    })
-              ],
-            )),
-            Container(
-              color: Colors.black,
-              width: double.infinity,
-              height: 0.1,
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -167,8 +73,8 @@ class _MarketState extends State<Market> {
                 autoPlay: true,
                 reverse: false,
                 enableInfiniteScroll: true,
-                autoPlayInterval: Duration(seconds: 2),
-                autoPlayAnimationDuration: Duration(milliseconds: 3000),
+                autoPlayInterval: Duration(seconds: 5),
+                autoPlayAnimationDuration: Duration(milliseconds: 4000),
                 pauseAutoPlayOnTouch: Duration(seconds: 5),
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index) {
@@ -235,8 +141,8 @@ class _MarketState extends State<Market> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image.asset(
-                              'assets/user.png',
+                            child: Image.network(
+                              'https://guesseu.scene7.com/is/image/GuessEU/M63H24W7JF0-L302-ALTGHOST?wid=1500&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0',
                               width: 150,
                             ),
                           ),
@@ -268,106 +174,108 @@ class _MarketState extends State<Market> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            child: Image.asset(
-                              'assets/user.png',
+                            child: Image.network(
+                              'https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
                               width: 150,
                             ),
                           ),
                           Container(
-                              margin: const EdgeInsets.all(10),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(
-                                    'Clothes',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Description',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ))
+                            margin: const EdgeInsets.all(10),
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  'Clothes',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Description',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
                   )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/details');
-                    },
-                    child: Card(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Image.asset(
-                              'assets/user.png',
-                              width: 150,
+              Container(
+                margin: const EdgeInsets.only(top: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/details');
+                      },
+                      child: Card(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              child: Image.network(
+                                'https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0',
+                                width: 150,
+                              ),
                             ),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.all(10),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(
-                                    'Clothes',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Description',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ))
-                        ],
+                            Container(
+                                margin: const EdgeInsets.all(10),
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'Clothes',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Description',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
 
-                  // Card
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/details');
-                    },
-                    child: Card(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Image.asset(
-                              'assets/user.png',
-                              width: 150,
+                    // Card
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/details');
+                      },
+                      child: Card(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              child: Image.network(
+                                'http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0',
+                                width: 150,
+                              ),
                             ),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.all(10),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(
-                                    'Clothes',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Description',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ))
-                        ],
+                            Container(
+                                margin: const EdgeInsets.all(10),
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'Clothes',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Description',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               )
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.center,
@@ -388,9 +296,10 @@ class _MarketState extends State<Market> {
       ),
     );
   }
-   goToPrevious() {
+
+  goToPrevious() {
     carouselSlider.previousPage(
-        duration: Duration(milliseconds: 300), curve: Curves.ease);
+        duration: Duration(milliseconds: 500), curve: Curves.ease);
   }
 
   goToNext() {
